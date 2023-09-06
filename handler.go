@@ -26,11 +26,11 @@ var (
 )
 
 func handler(w http.ResponseWriter, r *http.Request) {
-	if r.URL.Path != "/" {
-		w.WriteHeader(http.StatusNotFound)
+	if r.Method != "GET" && r.Method != "POST" {
+		w.WriteHeader(http.StatusMethodNotAllowed)
 		return
 	}
-	if r.Method != "GET" && r.Method != "POST" {
+	if r.URL.Path != "/" {
 		w.WriteHeader(http.StatusNotFound)
 		return
 	}
@@ -238,18 +238,4 @@ func sessionLifecycleTimer(ctx context.Context, sessionTimeout time.Duration) {
 			sleep = max(sleep, time.Second)
 		}
 	}
-}
-
-func min(i, j time.Duration) time.Duration {
-	if i < j {
-		return i
-	}
-	return j
-}
-
-func max(i, j time.Duration) time.Duration {
-	if i < j {
-		return j
-	}
-	return i
 }
