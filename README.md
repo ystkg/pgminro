@@ -18,7 +18,7 @@ flowchart LR
 
 例
 ```
- $ go version
+$ go version
 go version go1.21.3 linux/amd64
 ```
 
