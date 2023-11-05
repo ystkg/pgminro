@@ -12,12 +12,14 @@ flowchart LR
     connect[DB接続] --> query[クエリー]
     query --> query
 ```
+
 ## 動作要件
 
 * Go（version 1.21以降）がインストールされていること
 
 例
-```
+
+```ShellSession
 $ go version
 go version go1.21.3 linux/amd64
 ```
@@ -38,4 +40,4 @@ go run .
 
 ### ブラウザからアクセス
 
-http://localhost:8432/
+`http://localhost:8432/`
