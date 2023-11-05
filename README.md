@@ -19,7 +19,7 @@ flowchart LR
 
 例
 
-```Shell
+```ShellSession
 $ go version
 go version go1.21.3 linux/amd64
 ```
