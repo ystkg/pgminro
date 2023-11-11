@@ -21,7 +21,7 @@ flowchart LR
 
 ```ShellSession
 $ go version
-go version go1.21.3 linux/amd64
+go version go1.21.4 linux/amd64
 ```
 
 ## 使い方
