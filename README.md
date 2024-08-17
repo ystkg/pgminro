@@ -15,13 +15,13 @@ flowchart LR
 
 ## 動作要件
 
-* Go（version 1.22以降）がインストールされていること
+* Go（version 1.23以降）がインストールされていること
 
 例
 
 ```ShellSession
 $ go version
-go version go1.22.4 linux/amd64
+go version go1.23.0 linux/amd64
 ```
 
 ## 使い方
