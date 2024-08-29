@@ -43,4 +43,4 @@ pgminro
 
 ### ブラウザからアクセス
 
-[http://localhost:8432/](http://localhost:8432/)
+<http://localhost:8432/>
