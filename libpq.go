@@ -38,7 +38,7 @@ type ByteArray struct {
 }
 
 func formatDSN(form ConnectForm, password string) string {
-	return fmt.Sprintf("postgres://%s:%s@%s:%s/%s?sslmode=disable", form.User, password, form.Host, form.Port, form.Database)
+	return fmt.Sprintf("postgres://%s:%s@%s:%s/%s?sslmode=disable&default_transaction_read_only=on", form.User, password, form.Host, form.Port, form.Database)
 }
 
 func openDB(form ConnectForm, password string) (*connection, error) {
@@ -62,27 +62,27 @@ func openDB(form ConnectForm, password string) (*connection, error) {
 	return &connection{db, formatDSN(form, masked)}, nil
 }
 
-func (conn *connection) Close() error {
+func (c *connection) Close() error {
 	var d *sql.DB
-	d, conn.db = conn.db, nil
+	d, c.db = c.db, nil
 	if d == nil {
 		return nil
 	}
 	return d.Close()
 }
 
-func (conn *connection) Query(query string) (*ResultSet, error) {
+func (c *connection) Query(query string) (*ResultSet, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), queryTimeoutSec*time.Second)
 	defer cancel()
 
-	tx, err := conn.db.BeginTx(ctx, &sql.TxOptions{ReadOnly: true})
+	conn, err := c.db.Conn(ctx)
 	if err != nil {
 		return nil, err
 	}
-	defer tx.Rollback()
+	defer conn.Close()
 
 	start := time.Now()
-	rows, err := tx.QueryContext(ctx, query)
+	rows, err := conn.QueryContext(ctx, query)
 	if err != nil {
 		return nil, err
 	}
