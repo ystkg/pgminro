@@ -46,6 +46,8 @@ func openDB(form ConnectForm, password string) (*connection, error) {
 	if err != nil {
 		return nil, err
 	}
+	db.SetMaxOpenConns(1)
+	db.SetConnMaxIdleTime(maxIdleTimeMin * time.Minute)
 
 	ctx, cancel := context.WithTimeout(context.Background(), queryTimeoutSec*time.Second)
 	defer cancel()
