@@ -14,6 +14,7 @@ const (
 
 	// avoid unlimited
 	sessionTimeoutMin = 180
+	maxIdleTimeMin    = 10
 	queryTimeoutSec   = 300
 	maxRows           = 10000
 )
