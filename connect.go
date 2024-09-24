@@ -22,6 +22,9 @@ type ConnectForm struct {
 type ConnectInfo struct {
 	ConnectForm
 
+	Pq  string
+	Pgx string
+
 	ErrorMessage string
 }
 

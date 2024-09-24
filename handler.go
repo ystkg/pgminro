@@ -73,17 +73,23 @@ func handler(w http.ResponseWriter, r *http.Request) {
 				Database: r.PostFormValue("database"),
 				User:     r.PostFormValue("user"),
 			}
-			if conn, err := openDB(form, r.PostFormValue("password")); err == nil {
+			driver := r.PostFormValue("driver")
+			if conn, err := openDB(driver, form, r.PostFormValue("password")); err == nil {
 				session.conn = conn
 			} else {
-				connectInfo = &ConnectInfo{form, err.Error()}
+				connectInfo = &ConnectInfo{form, "", "", err.Error()}
+				if driver == "pgx" {
+					connectInfo.Pgx = "checked"
+				} else {
+					connectInfo.Pq = "checked"
+				}
 			}
 		} else {
-			connectInfo = &ConnectInfo{}
+			connectInfo = &ConnectInfo{Pq: "checked"}
 		}
 	} else if action == "disconnect" {
 		invalidateSession(sessionId)
-		connectInfo = &ConnectInfo{}
+		connectInfo = &ConnectInfo{Pq: "checked"}
 	}
 
 	if connectInfo != nil { // unconnected
