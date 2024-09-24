@@ -13,8 +13,6 @@ const (
 	host        = "localhost"
 	defaultPort = "8432"
 
-	sqlDriverName = "postgres" // postgres or pgx
-
 	useHttpsCertainty = false // ex. by reverse proxy
 
 	// avoid unlimited
