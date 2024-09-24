@@ -2,7 +2,7 @@
 
 ## 概要
 
-* PostgreSQLの参照専用クライアント
+* PostgreSQLの参照向けクライアント
 * ブラウザ上から任意のSELECT文を実行して、結果を表示する軽量ツール
 
 ## 動作要件
@@ -13,7 +13,7 @@
 
 ```ShellSession
 $ go version
-go version go1.23.0 linux/amd64
+go version go1.23.1 linux/amd64
 ```
 
 ## インストール
