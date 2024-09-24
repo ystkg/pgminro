@@ -3,12 +3,17 @@ package main
 import (
 	"log"
 	"net/http"
+
+	_ "github.com/jackc/pgx/v5/stdlib"
+	_ "github.com/lib/pq"
 )
 
 // config
 const (
 	host        = "localhost"
 	defaultPort = "8432"
+
+	sqlDriverName = "postgres" // postgres or pgx
 
 	useHttpsCertainty = false // ex. by reverse proxy
 

@@ -6,9 +6,6 @@ import (
 	"fmt"
 	"reflect"
 	"time"
-
-	_ "github.com/jackc/pgx/v5/stdlib"
-	_ "github.com/lib/pq"
 )
 
 type connection struct {
@@ -43,7 +40,7 @@ func formatDSN(form ConnectForm, password string) string {
 }
 
 func openDB(form ConnectForm, password string) (*connection, error) {
-	db, err := sql.Open("postgres", formatDSN(form, password))
+	db, err := sql.Open(sqlDriverName, formatDSN(form, password))
 	if err != nil {
 		return nil, err
 	}
