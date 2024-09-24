@@ -13,7 +13,7 @@
 <form action='/' method='POST'>
 <table>
 <tr><th style='text-align: left;'>driver</th><td style='text-align: left;'><input type="radio" name="driver" value="pq" {{.Pq}}>pq<input type="radio" name="driver" value="pgx" {{.Pgx}}>pgx</td><td>
-<tr><th style='text-align: left;'>host</th><td style='text-align: left;'><input type='text' size='35' maxlength='150' name='host'{{.Host | valueAttr}}></td><td>(default:pq=localhost|pgx=UNIX domain socket)</td></tr>
+<tr><th style='text-align: left;'>host</th><td style='text-align: left;'><input type='text' size='35' maxlength='150' name='host'{{.Host | valueAttr}}></td><td>(default:driver dependent. For example, localhost or unix socket)</td></tr>
 <tr><th style='text-align: left;'>port</th><td style='text-align: left;'><input type='text' size='6' maxlength='5' name='port'{{.Port | valueAttr}}></td><td>(default:5432)</td></tr>
 <tr><th style='text-align: left;'>database</th><td style='text-align: left;'><input type='text' size='35' maxlength='50' name='database'{{.Database | valueAttr}}></td><td>(default:user name)</td></tr>
 <tr><th style='text-align: left;'>user</th><td style='text-align: left;'><input type='text' size='35' maxlength='50' name='user'{{.User | valueAttr}}></td><td>(default:osUser)</td></tr>
