@@ -39,9 +39,9 @@ func formatDSN(form ConnectForm, password string) string {
 	return fmt.Sprintf("postgres://%s:%s@%s:%s/%s?sslmode=disable&default_transaction_read_only=on", form.User, password, form.Host, form.Port, form.Database)
 }
 
-func openDB(sqlDriverName string, form ConnectForm, password string) (*connection, error) {
+func openDB(sqlDriver string, form ConnectForm, password string) (*connection, error) {
 	driverName := "postgres"
-	if sqlDriverName == "pgx" {
+	if sqlDriver == "pgx" {
 		driverName = "pgx"
 	}
 	db, err := sql.Open(driverName, formatDSN(form, password))

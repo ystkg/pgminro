@@ -85,11 +85,20 @@ func handler(w http.ResponseWriter, r *http.Request) {
 				}
 			}
 		} else {
-			connectInfo = &ConnectInfo{Pq: "checked"}
+			connectInfo = &ConnectInfo{}
 		}
 	} else if action == "disconnect" {
 		invalidateSession(sessionId)
-		connectInfo = &ConnectInfo{Pq: "checked"}
+		connectInfo = &ConnectInfo{}
+	}
+	if connectInfo != nil && connectInfo.Pgx == connectInfo.Pq {
+		if defaultPgx {
+			connectInfo.Pq = ""
+			connectInfo.Pgx = "checked"
+		} else {
+			connectInfo.Pq = "checked"
+			connectInfo.Pgx = ""
+		}
 	}
 
 	if connectInfo != nil { // unconnected

@@ -13,6 +13,8 @@ const (
 	host        = "localhost"
 	defaultPort = "8432"
 
+	defaultPgx = false
+
 	useHttpsCertainty = false // ex. by reverse proxy
 
 	// avoid unlimited
