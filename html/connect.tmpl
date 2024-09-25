@@ -6,14 +6,30 @@
 <body>
 <table style='width: 100%;'>
 <tr>
-<td>connStrFmt</td>
+<td>postgres://<i><b>user</b></i>:<i><b>password</b></i>@<i><b>host</b></i>:<i><b>port</b></i>/<i><b>database</b></i></td>
 </tr>
 </table>
 <br>
 <form action='/' method='POST'>
 <table>
-<tr><th style='text-align: left;'>driver</th><td style='text-align: left;'><input type="radio" name="driver" value="pq" {{.Pq}}>pq<input type="radio" name="driver" value="pgx" {{.Pgx}}>pgx</td><td>
-<tr><th style='text-align: left;'>host</th><td style='text-align: left;'><input type='text' size='35' maxlength='150' name='host'{{.Host | valueAttr}}></td><td>(default:driver dependent. For example, localhost or unix socket)</td></tr>
+<tr><th style='text-align: left;'>driver</th><td style='text-align: left;'>
+	<input type="radio" name="driver" value="pq" {{.Pq}}>pq
+	<input type="radio" name="driver" value="pgx" {{.Pgx}}>pgx
+</td><td>
+<tr><th style='text-align: left;'>sslmode</th><td style='text-align: left;'>
+	<input type="radio" name="sslmode" value="disable" {{.SslDisable}}>disable
+	<input type="radio" name="sslmode" value="require" {{.SslRequire}}>require
+	<input type="radio" name="sslmode" value="verify-ca" {{.SslVerifyCa}}>verify-ca
+	<input type="radio" name="sslmode" value="verify-full" {{.SslVerifyFull}}>verify-full
+	<br>
+	<input type="radio" name="sslmode" value="allow" {{.SslAllow}}>allow(pgx only)
+	<input type="radio" name="sslmode" value="prefer" {{.SslPrefer}}>prefer(pgx only)
+</td><td>
+<tr><th style='text-align: left;'>default_transaction_read_only</th><td style='text-align: left;'>
+	<input type="radio" name="readonly" value="on" {{.ReadOnlyOn}}>on
+	<input type="radio" name="readonly" value="off" {{.ReadOnlyOff}}>off
+</td><td>
+<tr><th style='text-align: left;'>host</th><td style='text-align: left;'><input type='text' size='35' maxlength='150' name='host'{{.Host | valueAttr}}></td><td>(default:driver dependent. Mostly localhost or unix socket)</td></tr>
 <tr><th style='text-align: left;'>port</th><td style='text-align: left;'><input type='text' size='6' maxlength='5' name='port'{{.Port | valueAttr}}></td><td>(default:5432)</td></tr>
 <tr><th style='text-align: left;'>database</th><td style='text-align: left;'><input type='text' size='35' maxlength='50' name='database'{{.Database | valueAttr}}></td><td>(default:user name)</td></tr>
 <tr><th style='text-align: left;'>user</th><td style='text-align: left;'><input type='text' size='35' maxlength='50' name='user'{{.User | valueAttr}}></td><td>(default:osUser)</td></tr>

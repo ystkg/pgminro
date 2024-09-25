@@ -6,6 +6,9 @@ import (
 	"fmt"
 	"reflect"
 	"time"
+
+	_ "github.com/jackc/pgx/v5/stdlib"
+	_ "github.com/lib/pq"
 )
 
 type connection struct {
@@ -35,19 +38,30 @@ type ByteArray struct {
 	bytes        *[]byte
 }
 
-func formatDSN(form ConnectForm, password string) string {
-	return fmt.Sprintf("postgres://%s:%s@%s:%s/%s?sslmode=disable&default_transaction_read_only=on", form.User, password, form.Host, form.Port, form.Database)
+func formatDSN(form ConnectForm, password string, opts map[string]string) string {
+	opt := "?"
+	switch sslmode := opts["sslmode"]; sslmode {
+	case "disable", "allow", "prefer", "require", "verify-ca", "verify-full":
+		opt = fmt.Sprintf("%ssslmode=%s&", opt, sslmode)
+	}
+	if readonly := opts["readonly"]; readonly == "on" || readonly == "off" {
+		opt = fmt.Sprintf("%sdefault_transaction_read_only=%s&", opt, readonly)
+	}
+	opt = opt[:len(opt)-1]
+
+	return fmt.Sprintf("postgres://%s:%s@%s:%s/%s%s", form.User, password, form.Host, form.Port, form.Database, opt)
 }
 
-func openDB(sqlDriver string, form ConnectForm, password string) (*connection, error) {
-	driverName := "postgres"
+func openDB(sqlDriver string, form ConnectForm, password string, opts map[string]string) (*connection, error) {
+	driverName := "postgres" // pq
 	if sqlDriver == "pgx" {
 		driverName = "pgx"
 	}
-	db, err := sql.Open(driverName, formatDSN(form, password))
+	db, err := sql.Open(driverName, formatDSN(form, password, opts))
 	if err != nil {
 		return nil, err
 	}
+
 	db.SetMaxOpenConns(1)
 	db.SetConnMaxIdleTime(maxIdleTimeMin * time.Minute)
 
@@ -61,7 +75,7 @@ func openDB(sqlDriver string, form ConnectForm, password string) (*connection, e
 	if password != "" {
 		masked = "********"
 	}
-	return &connection{db, formatDSN(form, masked)}, nil
+	return &connection{db, formatDSN(form, masked, opts)}, nil
 }
 
 func (c *connection) Close() error {
