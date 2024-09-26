@@ -74,9 +74,10 @@ func handler(w http.ResponseWriter, r *http.Request) {
 				User:     r.PostFormValue("user"),
 			}
 			driver := r.PostFormValue("driver")
-			opts := map[string]string{
-				"sslmode":  r.PostFormValue("sslmode"),
-				"readonly": r.PostFormValue("readonly"),
+			optNames := [...]string{"sslmode", "readonly"}
+			opts := make(map[string]string, len(optNames))
+			for _, name := range optNames {
+				opts[name] = r.PostFormValue(name)
 			}
 			if conn, err := openDB(driver, form, r.PostFormValue("password"), opts); err == nil {
 				session.conn = conn

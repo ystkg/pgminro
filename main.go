@@ -12,7 +12,7 @@ const (
 
 	defaultPgx = false
 
-	useHttpsCertainty = false // ex. by reverse proxy
+	useHttpsCertainty = false // For example, via reverse proxy
 
 	// avoid unlimited
 	sessionTimeoutMin = 180
