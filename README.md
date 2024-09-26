@@ -4,7 +4,7 @@
 
 * PostgreSQLの参照向けクライアント
 * ブラウザ上から任意のSELECT文を実行して結果を表示することを主目的とした軽量ツール
-* 参照向けの調整になっているだけで権限があれば `default_transaction_read_only` を変更することも可能
+* 参照向けの調整になっているだけで更新も可能
 
 ## 動作要件
 
@@ -37,8 +37,10 @@ pgminro
 `go env GOPATH`/bin/pgminro
 ```
 
-* プロセスの停止は Ctrl + C
-
 ### ブラウザからアクセス
 
 <http://localhost:8432/>
+
+### 停止
+
+プロセスの停止は Ctrl + C
