@@ -29,11 +29,11 @@
 	<input type="radio" name="readonly" value="on" {{.ReadOnlyOn}}>on
 	<input type="radio" name="readonly" value="off" {{.ReadOnlyOff}}>off
 </td><td>
-<tr><th style='text-align: left;'>host</th><td style='text-align: left;'><input type='text' size='35' maxlength='150' name='host'{{.Host | valueAttr}}></td><td>(default:driver dependent. Mostly localhost or unix socket)</td></tr>
+<tr><th style='text-align: left;'>host</th><td style='text-align: left;'><input type='text' size='45' maxlength='150' name='host'{{.Host | valueAttr}}></td><td>(default:driver dependent. Mostly localhost or unix socket)</td></tr>
 <tr><th style='text-align: left;'>port</th><td style='text-align: left;'><input type='text' size='6' maxlength='5' name='port'{{.Port | valueAttr}}></td><td>(default:5432)</td></tr>
-<tr><th style='text-align: left;'>database</th><td style='text-align: left;'><input type='text' size='35' maxlength='50' name='database'{{.Database | valueAttr}}></td><td>(default:user name)</td></tr>
-<tr><th style='text-align: left;'>user</th><td style='text-align: left;'><input type='text' size='35' maxlength='50' name='user'{{.User | valueAttr}}></td><td>(default:osUser)</td></tr>
-<tr><th style='text-align: left;'>password</th><td style='text-align: left;'><input type='password' size='35' maxlength='100' name='password'></td><td></td></tr>
+<tr><th style='text-align: left;'>database</th><td style='text-align: left;'><input type='text' size='45' maxlength='50' name='database'{{.Database | valueAttr}}></td><td>(default:user name)</td></tr>
+<tr><th style='text-align: left;'>user</th><td style='text-align: left;'><input type='text' size='45' maxlength='50' name='user'{{.User | valueAttr}}></td><td>(default:osUser)</td></tr>
+<tr><th style='text-align: left;'>password</th><td style='text-align: left;'><input type='password' size='45' maxlength='100' name='password'></td><td></td></tr>
 <tr><td></td><td><input type='submit' name='action' value='connect'></td><td></td></tr>
 </table>
 </form>
