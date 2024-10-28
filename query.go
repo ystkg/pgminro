@@ -92,7 +92,7 @@ func styleValue(v any) template.CSS {
 			style += " text-align: center; color: lightgray;"
 		}
 	case *ByteArray:
-		if p == nil {
+		if p == nil || p.bytes == nil {
 			style += " text-align: center; color: lightgray;"
 		}
 	default:
