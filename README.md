@@ -15,7 +15,7 @@
 
 ```ShellSession
 $ go version
-go version go1.23.2 linux/amd64
+go version go1.23.5 linux/amd64
 ```
 
 ## インストール
