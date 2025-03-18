@@ -7,15 +7,15 @@
 * 参照向けの調整になっているだけで更新も可能
 * SQLドライバは画面上で選択（ `pq` or `pgx` ）
 
-## 動作要件
+## 推奨環境
 
-* Go（version 1.23以降）がインストールされていること
+* Go version 1.24以降
 
 例
 
 ```ShellSession
 $ go version
-go version go1.23.5 linux/amd64
+go version go1.24.1 linux/amd64
 ```
 
 ## インストール
