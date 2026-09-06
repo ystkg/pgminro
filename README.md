@@ -9,13 +9,13 @@
 
 ## 推奨環境
 
-* Go version 1.25以降
+* Go version 1.27以降
 
 例
 
 ```ShellSession
 $ go version
-go version go1.25.4 linux/amd64
+go version go1.27.1 linux/amd64
 ```
 
 ## インストール
