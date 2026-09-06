@@ -2,7 +2,6 @@ package main
 
 import (
 	_ "embed"
-	"encoding/hex"
 	"fmt"
 	"html/template"
 	"strconv"
@@ -146,12 +145,7 @@ func tdValue(i, hyperlinkIndex int, v any) template.HTML {
 		}
 	case *ByteArray:
 		if p.bytes != nil {
-			switch p.databaseType {
-			case "UUID":
-				s = hex.EncodeToString(*p.bytes)
-			default:
-				s = string(*p.bytes)
-			}
+			s = string(*p.bytes)
 		}
 	default:
 		s = "(unknown)"
